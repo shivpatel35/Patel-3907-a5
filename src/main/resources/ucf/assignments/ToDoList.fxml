@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryTrackerController">
+    <children>
+        <GridPane layoutX="92.0" layoutY="355.0" prefHeight="0.0" prefWidth="463.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+        </GridPane>
+          <Button fx:id="addNew" layoutX="14.0" layoutY="628.0" mnemonicParsing="false" onAction="#AddItemClicked" prefHeight="27.0" prefWidth="123.0" text="Add new" />
+      <TableView layoutX="14.0" layoutY="58.0" prefHeight="552.0" prefWidth="774.0">
+        <columns>
+          <TableColumn fx:id="valueofItem" prefWidth="182.0" text="Value" />
+          <TableColumn fx:id="serialNumberofItem" prefWidth="226.0" text="Serial Number" />
+            <TableColumn fx:id="nameofItem" minWidth="0.0" prefWidth="365.0" text="Name" />
+        </columns>
+      </TableView>
+      <MenuBar layoutX="14.0" layoutY="14.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem fx:id="save" mnemonicParsing="false" onAction="#SaveAsTSV" text="Save As TSV" />
+                  <MenuItem fx:id="save1" mnemonicParsing="false" onAction="#SaveFileClicked" text="Load File" />
+                  <MenuItem fx:id="save2" mnemonicParsing="false" onAction="#SaveAsHTML" text="Save As HTML" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+    </children>
+</AnchorPane>
