@@ -1,5 +1,82 @@
 @startuml
 'https://plantuml.com/class-diagram
 
+class Main {
+    main()
+    start()
+}
+
+class Inventory{
+    private String value
+    private String serialNumber
+    private String name
+
+    Inventory()
+    Inventory(String,String,String)
+
+    equals(Object)
+    hashCode()
+    toString()
+    toFileFormat()
+
+    String name
+    double price
+    double value
+    double serialNumber
+
+
+
+}
+
+class FileOperations{
+
+loadTSVData()
+saveTSVData()
+saveJSONData()
+loadJSONData()
+saveHTMLData()
+loadHTMLData()
+
+}
+
+class Controller{
+
+    private ObservableList<Inventory> inventorys
+    private FileOperations fileOperations
+    private int selectedIndex
+    FileChooser fileChooser
+
+    Controller()
+
+    search()
+    clear()
+    add()
+    update()
+    delete()
+    sortByValue()
+    sortBySerialNumber()
+    sortByName()
+    onClicked()
+    loadTSV()
+    loadJSON()
+    loadHTML()
+    saveTSV()
+    saveJSON()
+    saveHTML()
+
+    private currencyvalidator()
+    private snValidator()
+    private snUniquenessValidator()
+    private nameValidator
+    private isContainsDuplicate()
+
+}
+
+javafx.Application <|--Main
+
+Main -- Controller
+
+Controller <-- FileOperations
+Controller <-- Inventory
 
 @enduml

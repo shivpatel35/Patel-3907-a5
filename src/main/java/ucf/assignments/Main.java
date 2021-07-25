@@ -1,3 +1,9 @@
+/*
+ *  UCF COP3330 Summer 2021 Assignment 5 Solution
+ *  Copyright 2021 Shiv Patel
+ */
+
+
 package ucf.assignments;
 
 import javafx.application.Application;
@@ -6,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+//main class for loading up fxml file
 public class Main extends Application {
 
     @Override
