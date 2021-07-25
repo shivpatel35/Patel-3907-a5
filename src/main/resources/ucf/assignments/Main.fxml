@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.0" prefWidth="521.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.Controller">
+    <children>
+        <MenuBar id="menubar" layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem id="loadTCV" fx:id="loadTCV" mnemonicParsing="false" onAction="#loadTCV" text="Load TCV" />
+                        <MenuItem id="loadJSON" mnemonicParsing="false" onAction="#loadJSON" text="Load JSON" />
+                        <MenuItem id="loadHTML" mnemonicParsing="false" onAction="#loadHTML" text="Load HTML" />
+                        <MenuItem id="saveTCV" mnemonicParsing="false" onAction="#saveTCV" text="Save TCV" />
+                        <MenuItem id="saveJSON" mnemonicParsing="false" onAction="#saveJSON" text="Save JSON" />
+                        <MenuItem id="saveHTML" fx:id="saveHTML" mnemonicParsing="false" onAction="#saveHTML" text="Save HTML" />
+                    </items>
+                </Menu>
+
+            </menus>
+        </MenuBar>
+        <TextField fx:id="searchTextField" layoutX="14.0" layoutY="40.0" prefHeight="26.0" prefWidth="321.0" promptText="Search by name or serial number" />
+        <Button fx:id="searchBtn" layoutX="358.0" layoutY="40.0" mnemonicParsing="false" onAction="#search" prefHeight="26.0" prefWidth="64.0" text="Search" />
+        <Button fx:id="clearBtn" layoutX="444.0" layoutY="40.0" mnemonicParsing="false" onAction="#clear" prefHeight="26.0" prefWidth="64.0" text="Clear" />
+        <TextField fx:id="valueTextField" layoutX="14.0" layoutY="83.0" prefHeight="26.0" prefWidth="150.0" promptText="Value" />
+        <TextField fx:id="serialNumberTextField" layoutX="186.0" layoutY="83.0" prefHeight="26.0" prefWidth="150.0" promptText="Serial Number" />
+        <TextField fx:id="nameTextField" layoutX="358.0" layoutY="84.0" promptText="Name" />
+        <Button fx:id="addBtn" layoutX="14.0" layoutY="126.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="60.0" text="Add" />
+        <Button fx:id="updateBtn" layoutX="81.0" layoutY="126.0" mnemonicParsing="false" onAction="#update" prefWidth="60.0" text="Update" />
+        <Button fx:id="deleteBtn" layoutX="149.0" layoutY="126.0" mnemonicParsing="false" onAction="#delete" prefWidth="60.0" text="Delete" />
+        <Button fx:id="sortByValueBtn" layoutX="221.0" layoutY="126.0" mnemonicParsing="false" onAction="#sortByValue" text="Sort by value" />
+        <Button fx:id="sortBySn" layoutX="324.0" layoutY="126.0" mnemonicParsing="false" onAction="#sortBySerialNumber" text="Sort by SN" />
+        <Button fx:id="sortByName" layoutX="419.0" layoutY="126.0" mnemonicParsing="false" onAction="#sortByName" text="Sort by name" />
+        <TableView fx:id="tableView" layoutX="14.0" layoutY="170.0" onMouseClicked="#onClicked" prefHeight="332.0" prefWidth="494.0">
+            <columns>
+                <TableColumn fx:id="columnValue" prefWidth="70.0" text="Value">
+                    <cellValueFactory><PropertyValueFactory property="value" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="columnSN" prefWidth="100.0" text="Serial Number">
+                    <cellValueFactory><PropertyValueFactory property="serialNumber" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="columnName" prefWidth="100.0" text="Name">
+                    <cellValueFactory><PropertyValueFactory property="name" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </children>
+</AnchorPane>

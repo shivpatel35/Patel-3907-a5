@@ -27,4 +27,4 @@ javafx {
     modules = [ 'javafx.controls' , 'javafx.fxml']
 }
 
-mainClassName = 'ucf.assignments.InventoryTracker'
+mainClassName = 'ucf.assignments.Main'
