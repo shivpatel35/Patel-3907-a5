@@ -12,47 +12,40 @@ import javafx.stage.Stage;
 
 public class InventoryTrackerController {
 
-    //observable list declartion
-    private ObservableList<Inventory> tasks= FXCollections.observableArrayList();
-
-    //Right click menu items to either delete or update tasks
-    MenuItem update= new MenuItem("Update");
-    MenuItem delete= new MenuItem("Delete");
-    private final ContextMenu contextMenu=new ContextMenu(update,delete);
-
-    //declaration of buttons in program for adding new item, saving, and restoring the original save file
     @FXML
-    public Button addNew;
-
+    public MenuItem saveTSV;
     @FXML
-    public Button save;
-
-
-    //Tableview connection with Item Class and Fxml File
-    @FXML private TableView<Inventory> table;
-    @FXML private TableColumn<Inventory,String> Description;
-    @FXML private TableColumn<Inventory,String>DueDate;
-    @FXML private TableColumn<Inventory,String>Status;
-
-
+    public MenuItem saveHTML;
     @FXML
-    private void AddItemClicked(ActionEvent event) {
+    public MenuItem saveJSON;
+    @FXML
+    public MenuItem loadTSV;
+    @FXML
+    public MenuItem loadJSON;
+    @FXML
+    public MenuItem loadHTML;
+    @FXML
+    public TableColumn valueofItem;
+    @FXML
+    public TableColumn serialNumberofItem;
+    @FXML
+    public TableColumn nameofItem;
+    @FXML
+    public TextField searchTextField;
+    @FXML
+    public TextField valueTextField;
+    @FXML
+    public TextField serialNumberTextField;
+    @FXML
+    public TextField nameTextField;
 
-        //try-catch statement to open fxml file
-        try {
-            //opens FXML scene to add a new item
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("ucf/assignmets/AddItem.fxml"));
-            Parent root = loader.load();
-            AddItemController control=loader.getController();
-            control.setTableItems(table.getItems());
-            Stage stage = new Stage();
-            stage.setTitle("Add Task");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch(Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
+
+    private final ObservableList<Inventory> inventorys =  FXCollections.observableArrayList();
+
+    private FileOperations fileOperations;
+
+    private int selectedIndex = -1;
+
 
 
     public void SaveAsTSV(ActionEvent actionEvent) {
@@ -62,5 +55,69 @@ public class InventoryTrackerController {
     }
 
     public void SaveAsHTML(ActionEvent actionEvent) {
+    }
+
+    public void clearButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void addItemClicked(ActionEvent actionEvent) {
+        if (!currencyValidator(valueTextField.getText())) {
+            new Alert(Alert.AlertType.ERROR, "Value must be monetary and greater than zero").show();
+
+        } else if (!snValidator(serialNumberTextField.getText().trim()) || !snUniquenessValidator(serialNumberTextField.getText().trim()) ) {
+            new Alert(Alert.AlertType.ERROR, "Serial number should be unique in the format XXXXXXXXXX where X can be letter or digit").show();
+
+        } else if(!nameValidator(nameTextField.getText().trim())){
+            new Alert(Alert.AlertType.ERROR, "Item shall have a name between 2 and 256 characters inclusive").show();
+        }else {
+
+            inventorys.add( new Inventory(valueTextField.getText(), serialNumberTextField.getText(), nameTextField.getText()));
+            valueTextField.clear();
+            serialNumberTextField.clear();
+            nameTextField.clear();
+        }
+    }
+
+    public void searchButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void updateClicked(ActionEvent actionEvent) {
+    }
+
+    public void deleteClicked(ActionEvent actionEvent) {
+    }
+
+    public void sortBySNclicked(ActionEvent actionEvent) {
+    }
+
+    public void sortByNameclicked(ActionEvent actionEvent) {
+    }
+
+    public void sortByValueClicked(ActionEvent actionEvent) {
+    }
+
+    private boolean currencyValidator(String value) {
+        if (value == null) {
+            return false;
+        }
+        return value.trim().matches("(-?\\d+\\.?\\d{0,2})") && Double.parseDouble(value) > 0;
+    }
+
+    private boolean snValidator(String value) {
+        if (value == null){
+            return false;
+        }
+        return  value.trim().matches("[A-Z0-9]+") && value.trim().length() == 10;
+    }
+
+    private boolean snUniquenessValidator(String value){
+        return inventorys.stream().noneMatch(i -> i.getSerialNumber().equalsIgnoreCase(value.trim()));
+    }
+
+    private boolean nameValidator(String value) {
+        if (value == null || value.length() < 2 || value.length() > 256){
+            return false;
+        }
+        return true;
     }
 }
