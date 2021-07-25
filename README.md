@@ -17,6 +17,11 @@ To Sort:
 Buttons- Sort by SN, Sort by Name, and Sort by Value 
 Items in list will move based on button selection 
 
+To Search: 
+Enter Value, Serial Number, or Name to be searched in text field with prompt "Search"
+Press Search after entered.
+Search query will show as first index in table view
+
 Update Item:
 Select item with mouseclick in table view 
 Will popup in text field where text fields can be changed 
